@@ -242,7 +242,11 @@ $auto-include-flow-item-base  = $zen-auto-include-flow-item-base
         margin-{$rev}: zen-half-gutter($gutter-width, right, $dir);
 
     else if not $alpha-gutter and not $omega-gutter
-      width: if($box-sizing == border-box, ($width - $gutter-width), $width);
+      if $box-sizing == border-box
+        width: $width - $gutter-width;
+      else
+        width: $width;
+
       if $gutter-width != 0
         padding-left: 0;
         padding-right: 0;
