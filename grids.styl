@@ -280,10 +280,10 @@ $flow-direction   = $zen-float-direction
   // Special handling in case gutter has an odd number of pixels.
   if unit($gutter-width) == "px"
     if $gutter-side == $flow-direction
-      @return floor($half-gutter);
+      return floor($half-gutter);
     else
-      @return ceil($half-gutter);
-  @return $half-gutter;
+      return ceil($half-gutter);
+  return $half-gutter;
 
 // Calculates the unit width of a column. @see http://zengrids.com/help/#zen-unit-width
 zen-unit-width(
@@ -293,7 +293,7 @@ $grid-width     = $zen-grid-width
   $unit-width: $grid-width / $column-count;
   if unit($unit-width) == "px" and floor($unit-width) != ceil($unit-width)
     @warn "You may experience rounding errors as the grid width, #{$grid-width}, does not divide evenly into #{$column-count} columns.";
-  @return $unit-width;
+  return $unit-width;
 
 // Calculates the width of a grid item that spans the specified number of columns.
 // @see http://zengrids.com/help/#zen-grid-item-width
@@ -311,7 +311,7 @@ $box-sizing     = $zen-box-sizing
       $units-grid: unit($grid-width);
       @warn "The layout cannot be calculated correctly; when using box-sizing: content-box, the units of the gutter (#{$units-gutter} did not match the units of the grid width (#{$units-grid}).";
     $width: $width - $gutter-width;
-  @return $width;
+  return $width;
 
 // Returns the opposite direction, given "left" or "right".
 // @see http://zengrids.com/help/#zen-direction-flip
@@ -319,10 +319,10 @@ zen-direction-flip(
 $dir
 )
   if $dir == left
-    @return right;
+    return right;
   else if $dir == right
-    @return left;
+    return left;
   else if $dir == none or $dir == both
-    @return $dir;
+    return $dir;
   @warn "Invalid direction passed to zen-direction-flip().";
-  @return both;
+  return both;
