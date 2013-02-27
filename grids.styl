@@ -98,7 +98,7 @@ $auto-include-item-base   = $zen-auto-include-item-base
 
   // Auto-apply the unit base mixin.
   if $auto-include-item-base
-    @include zen-grid-item-base($gutter-width, $box-sizing);
+    zen-grid-item-base($gutter-width, $box-sizing);
 
 
 //
@@ -136,7 +136,7 @@ $reverse-all-flows  = $zen-reverse-all-floats
 
   if ($legacy-support-for-ie6 or $legacy-support-for-ie7)
     if $box-sizing == border-box and $box-sizing-polyfill-path == ""
-      @warn "IE legacy support is on, but $box-sizing is set to {$box-sizing} and the $box-sizing-polyfill-path is empty.";
+      warn "IE legacy support is on, but $box-sizing is set to {$box-sizing} and the $box-sizing-polyfill-path is empty.";
 
     if $box-sizing-polyfill-path != ""
       *behavior: url($box-sizing-polyfill-path);
@@ -199,7 +199,7 @@ $auto-include-flow-item-base  = $zen-auto-include-flow-item-base
   $columns = $column-count;
   if unit($grid-width) == "%"
     if $parent-column-count == false
-      @warn "For responsive layouts with a percentage-based grid width, you must set the $parent-column-count to the number of columns that the parent element spans.";
+      warn "For responsive layouts with a percentage-based grid width, you must set the $parent-column-count to the number of columns that the parent element spans.";
     else
       $columns = $parent-column-count;
 
@@ -211,7 +211,7 @@ $auto-include-flow-item-base  = $zen-auto-include-flow-item-base
 
   // Auto-apply the unit base mixin.
   if $auto-include-flow-item-base
-    @include zen-grid-item-base($gutter-width, $box-sizing);
+    zen-grid-item-base($gutter-width, $box-sizing);
 
   // Calculate the item's width.
   $width = zen-grid-item-width($column-span, $columns, $gutter-width, $grid-width, $box-sizing);
@@ -283,7 +283,7 @@ $grid-width     = $zen-grid-width
 )
   $unit-width = $grid-width / $column-count;
   if unit($unit-width) == "px" and floor($unit-width) != ceil($unit-width)
-    @warn "You may experience rounding errors as the grid width, {$grid-width}, does not divide evenly into {$column-count} columns.";
+    warn "You may experience rounding errors as the grid width, {$grid-width}, does not divide evenly into {$column-count} columns.";
   return $unit-width;
 
 // Calculates the width of a grid item that spans the specified number of columns.
@@ -300,7 +300,7 @@ $box-sizing     = $zen-box-sizing
     if not comparable($width, $gutter-width)
       $units-gutter = unit($gutter-width);
       $units-grid = unit($grid-width);
-      @warn "The layout cannot be calculated correctly; when using box-sizing: content-box, the units of the gutter ({$units-gutter} did not match the units of the grid width ({$units-grid}).";
+      warn "The layout cannot be calculated correctly; when using box-sizing: content-box, the units of the gutter ({$units-gutter} did not match the units of the grid width ({$units-grid}).";
     $width = $width - $gutter-width;
   return $width;
 
@@ -315,5 +315,5 @@ $dir
     return left;
   else if $dir == none or $dir == both
     return $dir;
-  @warn "Invalid direction passed to zen-direction-flip().";
+  warn "Invalid direction passed to zen-direction-flip().";
   return both;
