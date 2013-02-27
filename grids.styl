@@ -59,10 +59,8 @@ zen-grid-container()
 // nested grid. @see http://zengrids.com/help/#zen-nested-container
 //
 zen-nested-container()
-  padding: {
-    left: 0;
-    right: 0;
-  }
+  padding-left: 0;
+  padding-right: 0;
 
 
 //
@@ -95,10 +93,8 @@ $auto-include-item-base   = $zen-auto-include-item-base
 
   float: $dir;
   width: $width;
-  margin: {
-    #{$dir}: ($column-position - 1) * $unit-width;
-    #{$rev}: (1 - $column-position - $column-span) * $unit-width;
-  }
+  margin-{$dir}: ($column-position - 1) * $unit-width;
+  margin-{$rev}: (1 - $column-position - $column-span) * $unit-width;
 
   // Auto-apply the unit base mixin.
   if $auto-include-item-base
@@ -120,10 +116,9 @@ $reverse-all-flows  = $zen-reverse-all-floats
   if $reverse-all-flows
     $dir = zen-direction-flip($dir);
 
-  padding: {
-    left: zen-half-gutter($gutter-width, left, $dir);
-    right: zen-half-gutter($gutter-width, right, $dir);
-  }
+  padding-left: zen-half-gutter($gutter-width, left, $dir);
+  padding-right: zen-half-gutter($gutter-width, right, $dir);
+
   // Specify the border-box properties.
   if $box-sizing == border-box
     -moz-box-sizing: border-box;
@@ -133,17 +128,15 @@ $reverse-all-flows  = $zen-reverse-all-floats
 
   // Prevent left/right borders since they'll break the layout with content-box.
   if $box-sizing == content-box
-    border: {
-      left: 0 !important;
-      right: 0 !important;
-    }
+    border-left: 0 !important;
+    border-right: 0 !important;
 
   // Prevent overflowing content from being hidden beneath other grid items.
   word-wrap: break-word; // A very nice CSS3 property.
 
   if ($legacy-support-for-ie6 or $legacy-support-for-ie7)
     if $box-sizing == border-box and $box-sizing-polyfill-path == ""
-      @warn "IE legacy support is on, but $box-sizing is set to #{$box-sizing} and the $box-sizing-polyfill-path is empty.";
+      @warn "IE legacy support is on, but $box-sizing is set to {$box-sizing} and the $box-sizing-polyfill-path is empty.";
 
     if $box-sizing-polyfill-path != ""
       *behavior: url($box-sizing-polyfill-path);
@@ -231,39 +224,37 @@ $auto-include-flow-item-base  = $zen-auto-include-flow-item-base
     width: $width;
 
     // Ensure the HTML item either has a full gutter or no gutter on each side.
-    padding-#{$dir}: 0;
+    padding-{$dir}: 0;
     if $alpha-gutter
-      margin-#{$dir}: $gutter-width;
+      margin-{$dir}: $gutter-width;
 
-    padding-#{$rev}: $adjusted-gutter;
+    padding-{$rev}: $adjusted-gutter;
     if $omega-gutter
-      margin-#{$rev}: $gutter-width - $adjusted-gutter;
+      margin-{$rev}: $gutter-width - $adjusted-gutter;
 
     else
-      margin-#{$rev}: -($adjusted-gutter);
+      margin-{$rev}: -($adjusted-gutter);
   else
     if $alpha-gutter and $omega-gutter
       width: $width;
       if $gutter-width != 0
-        margin: {
-          #{$dir}: zen-half-gutter($gutter-width, left, $dir);
-          #{$rev}: zen-half-gutter($gutter-width, right, $dir);
-        }
+        margin-{$dir}: zen-half-gutter($gutter-width, left, $dir);
+        margin-{$rev}: zen-half-gutter($gutter-width, right, $dir);
+
     else if not $alpha-gutter and not $omega-gutter
       width: if($box-sizing == border-box, ($width - $gutter-width), $width);
       if $gutter-width != 0
-        padding: {
-          left: 0;
-          right: 0;
-        }
+        padding-left: 0;
+        padding-right: 0;
+
     else
       width: $width;
       if $omega-gutter
-        padding-#{$dir}: 0;
-        padding-#{$rev}: $gutter-width;
+        padding-{$dir}: 0;
+        padding-{$rev}: $gutter-width;
       else
-        padding-#{$dir}: $gutter-width;
-        padding-#{$rev}: 0;
+        padding-{$dir}: $gutter-width;
+        padding-{$rev}: 0;
 
 
 //
@@ -276,7 +267,7 @@ $gutter-width     = $zen-gutter-width,
 $gutter-side      = $zen-float-direction,
 $flow-direction   = $zen-float-direction
 )
-  $half-gutter: $gutter-width / 2;
+  $half-gutter = $gutter-width / 2;
   // Special handling in case gutter has an odd number of pixels.
   if unit($gutter-width) == "px"
     if $gutter-side == $flow-direction
@@ -290,9 +281,9 @@ zen-unit-width(
 $column-count   = $zen-column-count,
 $grid-width     = $zen-grid-width
 )
-  $unit-width: $grid-width / $column-count;
+  $unit-width = $grid-width / $column-count;
   if unit($unit-width) == "px" and floor($unit-width) != ceil($unit-width)
-    @warn "You may experience rounding errors as the grid width, #{$grid-width}, does not divide evenly into #{$column-count} columns.";
+    @warn "You may experience rounding errors as the grid width, {$grid-width}, does not divide evenly into {$column-count} columns.";
   return $unit-width;
 
 // Calculates the width of a grid item that spans the specified number of columns.
@@ -309,7 +300,7 @@ $box-sizing     = $zen-box-sizing
     if not comparable($width, $gutter-width)
       $units-gutter = unit($gutter-width);
       $units-grid = unit($grid-width);
-      @warn "The layout cannot be calculated correctly; when using box-sizing: content-box, the units of the gutter (#{$units-gutter} did not match the units of the grid width (#{$units-grid}).";
+      @warn "The layout cannot be calculated correctly; when using box-sizing: content-box, the units of the gutter ({$units-gutter} did not match the units of the grid width ({$units-grid}).";
     $width = $width - $gutter-width;
   return $width;
 
