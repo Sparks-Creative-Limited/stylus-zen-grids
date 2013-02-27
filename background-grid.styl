@@ -16,13 +16,13 @@ $bg-grid-color= #ffdede
 //   <span class="bgcolrev-1">1</span><span class="bgcolrev-2">2</span><span class="bgcolrev-3">3</span><span class="bgcolrev-4">4</span><span class="bgcolrev-5">5</span><span class="bgcolrev-6">6</span><span class="bgcolrev-7">7</span><span class="bgcolrev-8">8</span><span class="bgcolrev-9">9</span><span class="bgcolrev-10">10</span><span class="bgcolrev-11">11</span><span class="bgcolrev-12">12</span><span class="bgcolrev-13">13</span><span class="bgcolrev-14">14</span><span class="bgcolrev-15">15</span><span class="bgcolrev-16">16</span><span class="bgcolrev-17">17</span><span class="bgcolrev-18">18</span><span class="bgcolrev-19">19</span><span class="bgcolrev-20">20</span><span class="bgcolrev-21">21</span><span class="bgcolrev-22">22</span><span class="bgcolrev-23">23</span><span class="bgcolrev-24">24</span><span class="bgcolrev-25">25</span><span class="bgcolrev-26">26</span><span class="bgcolrev-27">27</span><span class="bgcolrev-28">28</span><span class="bgcolrev-29">29</span><span class="bgcolrev-30">30</span>
 // </p>
 //
-@mixin -experimental-bg-grid(
-  $column-count: $zen-column-count,
-  $gutter-width: $zen-gutter-width,
-  $grid-color: $bg-grid-color,
-  $grid-width: $zen-grid-width,
-  $flow-direction: $zen-float-direction
-) {
+-experimental-bg-grid(
+$column-count= $zen-column-count,
+$gutter-width= $zen-gutter-width,
+$grid-color= $bg-grid-color,
+$grid-width= $zen-grid-width,
+$flow-direction= $zen-float-direction
+)
 
   @warn "The -experimental-bg-grid() mixin has been DEPRECATED and will be removed in Zen Grids 2.0.";
 
@@ -84,4 +84,3 @@ $bg-grid-color= #ffdede
       display: none;
     }
   }
-}
