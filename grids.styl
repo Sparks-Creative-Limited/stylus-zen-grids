@@ -317,3 +317,7 @@ $dir
     return $dir;
   warn "Invalid direction passed to zen-direction-flip().";
   return both;
+
+// Returns true if two numbers are similar enough to be added, subtracted, or compared.
+comparable($number_1, $number_2)
+  return unit($number_1) == unit($number_2);
