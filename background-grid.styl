@@ -28,7 +28,7 @@ $flow-direction= $zen-float-direction
 
   // Internal variables.
   $dir: $flow-direction;
-  @if $zen-reverse-all-floats {
+  if $zen-reverse-all-floats {
     $dir: zen-direction-flip($dir);
   }
   $rev: zen-direction-flip($dir);
@@ -71,7 +71,7 @@ $flow-direction= $zen-float-direction
       }
     }
     .bgcolrev-#{$i} {
-	  @if $i == 1 {
+	  if $i == 1 {
         @include zen-clear();
       }
       @include zen-grid-item(1, $i, $column-count: $column-count, $gutter-width: $gutter-width, $float-direction: $rev, $auto-include-item-base: false);
